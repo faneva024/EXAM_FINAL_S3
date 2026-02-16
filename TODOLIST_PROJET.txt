@@ -35,6 +35,12 @@ TO DO LIST : PROJET BNGRC
 └─────────────────────────────────────────────────────────────────────────┘
 
 [OK] BaseModel.php 
+
+AuthModel.php:
+        autoRegister(nom,email)
+        function GetBYEmail ()
+
+
    
 
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -42,6 +48,7 @@ TO DO LIST : PROJET BNGRC
 └─────────────────────────────────────────────────────────────────────────┘
 
 [OK] BaseController.php 
+
 
 
 
@@ -54,6 +61,10 @@ TO DO LIST : PROJET BNGRC
 
 [OK] inc/footer.php 
     - Footer avec liens
+
+
+    auth/login.php
+    -
 
 
 
