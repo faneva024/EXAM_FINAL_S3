@@ -7,6 +7,29 @@ Flight::route('/', function () {
     DashboardController::index();
 });
 
+// =============================
+// DONS
+// =============================
+
+// Liste publique des dons
+Flight::route('GET /dons/liste', function () {
+    DonController::listeDons();
+});
+
+// Formulaire nouveau don
+Flight::route('GET /dons/nouveau', function () {
+    DonController::create();
+});
+
+// Enregistrer don
+Flight::route('POST /dons/nouveau', function () {
+    DonController::store();
+});
+
+// Mes dons (utilisateur connecté)
+Flight::route('GET /dons/mes', function () {
+    DonController::mesDons();
+});
 
 // =============================
 // AUTHENTIFICATION
@@ -82,3 +105,11 @@ Flight::route('POST /dons/add', function () {
 Flight::route('/dispatch', function () {
     DonController::dispatch();
 });
+
+// =============================
+// DETAIL D'UNE VILLE
+// =============================
+Flight::route('GET /ville/@id', function ($id) {
+    DashboardController::villeDetail((int)$id);
+});
+
