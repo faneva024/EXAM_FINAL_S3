@@ -1,20 +1,20 @@
-create database BNGRC_trinome;
+create database BNGRC;
 
-use BNGRC_trinome;
+use BNGRC;
 
-CREATE TABLE Ville (
+CREATE TABLE BNGRC_Ville (
     id_ville INT AUTO_INCREMENT PRIMARY KEY,
     nom_ville VARCHAR(100) NOT NULL,
     region VARCHAR(100) NOT NULL
 );
 
 
-CREATE TABLE CategoriesBesoins (
+CREATE TABLE BNGRC_CategoriesBesoins (
     id_categorie INT AUTO_INCREMENT PRIMARY KEY,
     nom_categorie VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE Besoins (
+CREATE TABLE BNGRC_Besoins (
     id_besoin INT AUTO_INCREMENT PRIMARY KEY,
     id_ville INT NOT NULL,
     id_categorie INT NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE Besoins (
     FOREIGN KEY (id_categorie) REFERENCES CategoriesBesoins(id_categorie)
 );
 
-CREATE TABLE User (
+CREATE TABLE BNGRC_User (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
@@ -36,8 +36,7 @@ CREATE TABLE User (
     date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-
-CREATE TABLE Dons (
+CREATE TABLE BNGRC_Dons (
     id_don INT AUTO_INCREMENT PRIMARY KEY,
     id_user INT NOT NULL,
     id_categorie INT NOT NULL,
@@ -53,7 +52,7 @@ CREATE TABLE Dons (
 
 
 ----------------
-CREATE TABLE Dispatch (
+CREATE TABLE BNGRC_Dispatch (
     id_dispatch INT AUTO_INCREMENT PRIMARY KEY,
     id_don INT NOT NULL,
     id_besoin INT NOT NULL,
