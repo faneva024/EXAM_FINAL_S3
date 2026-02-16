@@ -30,8 +30,9 @@ CREATE TABLE Besoins (
 CREATE TABLE User (
     id_user INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
-    email VARCHAR(150),
-    telephone VARCHAR(50),
+    email VARCHAR(150) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    role ENUM('donneur','admin') DEFAULT 'donneur',
     date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -62,6 +63,8 @@ CREATE TABLE Dispatch (
     FOREIGN KEY (id_don) REFERENCES Dons(id_don),
     FOREIGN KEY (id_besoin) REFERENCES Besoins(id_besoin)
 );
+
+
 
 
 -- Ville 1---n Besoins

@@ -23,6 +23,12 @@ BNGRC
 │   ├── index.php
 │   └── .htaccess
 ├── database/
+<<<<<<< Updated upstream
 │   ├── Tables.sql
 │   └── Donnes.sql
 └── composer.json
+=======
+│   ├── tables.sql
+│   └── donnes.sql
+└── composer.json
+>>>>>>> Stashed changes
