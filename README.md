@@ -14,7 +14,7 @@ BNGRC
 │   │   ├── TousModel.php
 │   │   ├── 
 │   ├── views/
-│   │   ├── Tousviews.php
+│   │   ├── TousViews.php
 │   │   ├──
 │   └── inc/
 │       ├── header.php
@@ -23,6 +23,6 @@ BNGRC
 │   ├── index.php
 │   └── .htaccess
 ├── database/
-│   ├── tables.sql
-│   └── donnes.sql
+│   ├── Tables.sql
+│   └── Donnes.sql
 └── composer.json
