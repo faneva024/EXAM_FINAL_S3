@@ -1,6 +1,6 @@
 {
-    "name": "takalo-takalo/app",
-    "description": "Plateforme d'échange d'objets",
+    "name": "bngrc/app",
+    "description": "BNGRC - Gestion des dons et besoins cyclones",
     "type": "project",
     "require": {
         "php": ">=7.4",

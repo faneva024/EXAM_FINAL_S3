@@ -4,8 +4,7 @@ use BNGRC;
 
 CREATE TABLE BNGRC_Ville (
     id_ville INT AUTO_INCREMENT PRIMARY KEY,
-    nom_ville VARCHAR(100) NOT NULL,
-    region VARCHAR(100) NOT NULL
+    nom_ville VARCHAR(100) NOT NULL
 );
 
 
@@ -23,8 +22,8 @@ CREATE TABLE BNGRC_Besoins (
     quantite INT NOT NULL,
     date_saisie DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (id_ville) REFERENCES Ville(id_ville),
-    FOREIGN KEY (id_categorie) REFERENCES CategoriesBesoins(id_categorie)
+    FOREIGN KEY (id_ville) REFERENCES BNGRC_Ville(id_ville),
+    FOREIGN KEY (id_categorie) REFERENCES BNGRC_CategoriesBesoins(id_categorie)
 );
 
 CREATE TABLE BNGRC_User (
@@ -45,13 +44,13 @@ CREATE TABLE BNGRC_Dons (
     montant DECIMAL(10,2),
     date_don DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (id_user) REFERENCES User(id_user),
-    FOREIGN KEY (id_categorie) REFERENCES CategoriesBesoins(id_categorie)
+    FOREIGN KEY (id_user) REFERENCES BNGRC_User(id_user),
+    FOREIGN KEY (id_categorie) REFERENCES BNGRC_CategoriesBesoins(id_categorie)
 );
 
 
 
-----------------
+-- --------------
 CREATE TABLE BNGRC_Dispatch (
     id_dispatch INT AUTO_INCREMENT PRIMARY KEY,
     id_don INT NOT NULL,
@@ -59,8 +58,8 @@ CREATE TABLE BNGRC_Dispatch (
     quantite_attribuee INT NOT NULL,
     date_dispatch DATETIME DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (id_don) REFERENCES Dons(id_don),
-    FOREIGN KEY (id_besoin) REFERENCES Besoins(id_besoin)
+    FOREIGN KEY (id_don) REFERENCES BNGRC_Dons(id_don),
+    FOREIGN KEY (id_besoin) REFERENCES BNGRC_Besoins(id_besoin)
 );
 
 
