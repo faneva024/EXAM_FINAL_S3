@@ -8,13 +8,13 @@ BNGRC
 │   │   ├── routes.php         # Routes
 │   │   └── services.php       # Services
 │   ├── controllers/
-│   │   ├── BaseController.php
+│   │   ├── TousController.php
 │   │   ├── 
 │   ├── models/
-│   │   ├── BaseModel.php
+│   │   ├── TousModel.php
 │   │   ├── 
 │   ├── views/
-│   │   ├── layout.php
+│   │   ├── Tousviews.php
 │   │   ├──
 │   └── inc/
 │       ├── header.php
