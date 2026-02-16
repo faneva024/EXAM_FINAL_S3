@@ -31,4 +31,7 @@ BNGRC
 │   ├── tables.sql
 │   └── donnes.sql
 └── composer.json
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
