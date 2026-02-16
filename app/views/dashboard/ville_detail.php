@@ -130,8 +130,8 @@
                 <tfoot class="table-light">
                     <tr class="fw-bold">
                         <td colspan="4" class="ps-4 text-end">TOTAL</td>
-                        <td class="text-center"><?= number_format($totalQte, 0, ',', ' ') ?></td>
-                        <td class="text-end text-danger"><?= number_format($totalMontant, 0, ',', ' ') ?></td>
+                        <td class="text-center"><?= number_format($totalQte) ?></td>
+                        <td class="text-end text-danger"><?= number_format($totalMontant) ?></td>
                         <td></td>
                     </tr>
                 </tfoot>

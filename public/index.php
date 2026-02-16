@@ -17,9 +17,12 @@ require __DIR__ . '/../app/config/database.php';
 require __DIR__ . '/../app/models/VilleModel.php';
 require __DIR__ . '/../app/models/BesoinsModel.php';
 require __DIR__ . '/../app/models/DonsModel.php';
+require __DIR__ . '/../app/models/authmodels.php';
 
 // Chargement des contrôleurs
 require __DIR__ . '/../app/controllers/DashboardController.php';
+require __DIR__ . '/../app/controllers/authcontrollers.php';
+require __DIR__ . '/../app/controllers/DonController.php';
 
 // Configuration de Flight - chemin des vues
 Flight::set('flight.views.path', __DIR__ . '/../app/views');

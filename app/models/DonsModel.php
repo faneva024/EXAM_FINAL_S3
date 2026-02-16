@@ -21,6 +21,57 @@ class DonsModel {
     }
 
     /**
+     * Insérer un nouveau don
+     */
+    public function insert(int $idUser, int $idCategorie, string $nomDon, int $quantite, ?float $montant): bool {
+        $stmt = $this->db->prepare(
+            "INSERT INTO BNGRC_Dons (id_user, id_categorie, nom_don, quantite, montant) 
+             VALUES (?, ?, ?, ?, ?)"
+        );
+        return $stmt->execute([$idUser, $idCategorie, $nomDon, $quantite, $montant]);
+    }
+
+    /**
+     * Récupérer les dons d'un utilisateur
+     */
+    public function getByUser(int $idUser): array {
+        $sql = "SELECT d.*, c.nom_categorie
+                FROM BNGRC_Dons d
+                JOIN BNGRC_CategoriesBesoins c ON d.id_categorie = c.id_categorie
+                WHERE d.id_user = ?
+                ORDER BY d.date_don DESC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$idUser]);
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Récupérer tous les dons ANONYMES (sans info donneur) pour les users simples
+     */
+    public function getAllAnonymous(): array {
+        $sql = "SELECT d.id_don, d.nom_don, d.quantite, d.montant, d.date_don, c.nom_categorie
+                FROM BNGRC_Dons d
+                JOIN BNGRC_CategoriesBesoins c ON d.id_categorie = c.id_categorie
+                ORDER BY d.date_don DESC";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Récupérer les stats globales des dons
+     */
+    public function getStatsGlobales(): array {
+        $sql = "SELECT 
+                    COUNT(DISTINCT d.id_user) AS nb_donneurs,
+                    COUNT(d.id_don) AS nb_dons,
+                    COALESCE(SUM(d.quantite), 0) AS total_quantite,
+                    COALESCE(SUM(d.montant), 0) AS montant_total
+                FROM BNGRC_Dons d";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetch();
+    }
+
+    /**
      * Résumé des dons par catégorie
      */
     public function getResumParCategorie(): array {
@@ -35,4 +86,6 @@ class DonsModel {
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
+
+
 }

@@ -104,10 +104,57 @@
                     <li class="nav-item">
                         <a class="nav-link <?= (str_starts_with($_SERVER['REQUEST_URI'], '/besoins') ? 'active' : '') ?>" href="/besoins"><i class="bi bi-exclamation-triangle me-1"></i>Besoins</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= (str_starts_with($_SERVER['REQUEST_URI'], '/dons/liste') ? 'active' : '') ?>" href="/dons/liste">
+                            <i class="bi bi-list-stars me-1"></i>Voir les dons
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= (str_starts_with($_SERVER['REQUEST_URI'], '/dons/nouveau') ? 'active' : '') ?>" href="/dons/nouveau">
+                            <i class="bi bi-heart-fill me-1"></i>Faire un don
+                        </a>
+                    </li>
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link <?= (str_starts_with($_SERVER['REQUEST_URI'], '/admin') ? 'active' : '') ?>" href="/admin/dons">
+                                <i class="bi bi-shield-lock me-1"></i>Admin
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
-                <span class="navbar-text text-white-50">
-                    <i class="bi bi-geo-alt me-1"></i>Côte Est - Madagascar
-                </span>
+                <ul class="navbar-nav">
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle me-1"></i><?= htmlspecialchars($_SESSION['user']['nom']) ?>
+                                <?php if ($_SESSION['user']['role'] === 'admin'): ?>
+                                    <span class="badge bg-warning text-dark ms-1">Admin</span>
+                                <?php endif; ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <?php if ($_SESSION['user']['role'] === 'admin'): ?>
+                                    <li><a class="dropdown-item" href="/admin/dons"><i class="bi bi-shield-check me-2"></i>Gestion des dons</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                <?php else: ?>
+                                    <li><a class="dropdown-item" href="/dons/mes-dons"><i class="bi bi-list-check me-2"></i>Mes dons</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                <?php endif; ?>
+                                <li><a class="dropdown-item text-danger" href="/logout"><i class="bi bi-box-arrow-right me-2"></i>Déconnexion</a></li>
+                            </ul>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Se connecter
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/login">
+                                <i class="bi bi-shield-lock me-1"></i>Admin
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
             </div>
         </div>
     </nav>
