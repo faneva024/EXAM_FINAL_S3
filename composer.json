@@ -1,0 +1,15 @@
+{
+    "name": "takalo-takalo/app",
+    "description": "Plateforme d'échange d'objets",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "mikecao/flight": "^3.0"
+    },
+    "autoload": {
+        "classmap": [
+            "app/models/",
+            "app/controllers/"
+        ]
+    }
+}
