@@ -116,3 +116,33 @@ INSERT INTO BNGRC_Besoins (id_ville, id_categorie, nom_besoin, prix_unitaire, qu
 (2, 1, 'Huile (L)', 6000.00, 120, '2026-02-16 08:25:00'),
 -- Ordre 26 : Farafangana, matériel, Bois
 (3, 2, 'Bois', 10000.00, 100, '2026-02-15 08:26:00');
+
+-- ============================================
+-- DONS (16 dons)
+-- id_categorie : 1=nature, 2=matériels, 3=argent
+-- Argent : quantite=NULL, montant=valeur
+-- Nature/Matériels : quantite=valeur, montant=NULL
+-- ============================================
+INSERT INTO BNGRC_Dons (id_user, id_categorie, nom_don, quantite, montant, date_don) VALUES
+-- Dons en argent (anonymes)
+(NULL, 3, 'Argent', NULL, 5000000, '2026-02-16 08:01:00'),
+(NULL, 3, 'Argent', NULL, 3000000, '2026-02-16 08:02:00'),
+(NULL, 3, 'Argent', NULL, 4000000, '2026-02-17 08:03:00'),
+(NULL, 3, 'Argent', NULL, 1500000, '2026-02-17 08:04:00'),
+(NULL, 3, 'Argent', NULL, 6000000, '2026-02-17 08:05:00'),
+(NULL, 3, 'Argent', NULL, 20000000, '2026-02-19 08:14:00'),
+-- Dons en nature (anonymes)
+(NULL, 1, 'Riz (kg)', 400, NULL, '2026-02-16 08:06:00'),
+(NULL, 1, 'Eau (L)', 600, NULL, '2026-02-16 08:07:00'),
+(NULL, 1, 'Haricots', 100, NULL, '2026-02-17 08:10:00'),
+(NULL, 1, 'Riz (kg)', 2000, NULL, '2026-02-18 08:11:00'),
+(NULL, 1, 'Eau (L)', 5000, NULL, '2026-02-18 08:13:00'),
+(NULL, 1, 'Haricots', 88, NULL, '2026-02-17 08:16:00'),
+-- Dons en matériels (anonymes)
+(NULL, 2, 'Tôle', 50, NULL, '2026-02-17 08:08:00'),
+(NULL, 2, 'Bâche', 70, NULL, '2026-02-17 08:09:00'),
+(NULL, 2, 'Tôle', 300, NULL, '2026-02-18 08:12:00'),
+(NULL, 2, 'Bâche', 500, NULL, '2026-02-19 08:15:00');
+
+
+alter table BNGRC_Dons modify column id_user int null;

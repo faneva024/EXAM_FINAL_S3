@@ -50,7 +50,7 @@ include __DIR__ . '/../layout_header.php';
                         <?php foreach ($dons as $d): ?>
                             <tr>
                                 <td><?= $d['id_don'] ?></td>
-                                <td><strong><?= htmlspecialchars($d['nom_user']) ?></strong></td>
+                                <td><strong><?= htmlspecialchars($d['nom_user'] ?? 'Anonyme') ?></strong></td>
                                 <td>
                                     <?php if ($d['id_categorie'] == 3): ?>
                                         <span class="badge-argent">En argent</span>

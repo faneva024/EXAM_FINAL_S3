@@ -22,7 +22,7 @@ class DonModel
                     )
                 END AS montant_affiche
             FROM BNGRC_Dons d
-            JOIN BNGRC_User u ON d.id_user = u.id_user
+            LEFT JOIN BNGRC_User u ON d.id_user = u.id_user
             JOIN BNGRC_CategoriesBesoins c ON d.id_categorie = c.id_categorie
             ORDER BY d.date_don DESC
         ");
