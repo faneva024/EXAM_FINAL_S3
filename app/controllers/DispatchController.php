@@ -24,13 +24,28 @@ class DispatchController extends BaseController
 
     public function simuler(): void
     {
-        $resultats = $this->dispatchModel->simuler();
-        Flight::render('dispatch/simulation', ['resultats' => $resultats]);
+        $strategy = Flight::request()->data->strategy ?? DispatchModel::STRATEGY_DATE;
+        $resultats = $this->dispatchModel->simuler($strategy);
+        Flight::render('dispatch/simulation', [
+            'resultats' => $resultats,
+            'strategy' => $strategy,
+        ]);
     }
 
     public function valider(): void
     {
-        $count = $this->dispatchModel->valider();
+        $strategy = Flight::request()->data->strategy ?? DispatchModel::STRATEGY_DATE;
+        $count = $this->dispatchModel->valider($strategy);
         $this->redirect('/dispatch?validated=' . $count);
+    }
+
+    public function reinitialiser(): void
+    {
+        $success = $this->dispatchModel->reinitialiser();
+        if ($success) {
+            $this->redirect('/dispatch?reset=1');
+        } else {
+            $this->redirect('/dispatch?error=reset');
+        }
     }
 }
