@@ -4,22 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< Updated upstream
-    "content-hash": "9d3170f08944c74e12c221f1418194e7",
-    "packages": [
-        {
-            "name": "mikecao/flight",
-            "version": "v3.18.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/flightphp/core.git",
-                "reference": "88d7032928c09b98e65ccd87b7f8a341a40cc3d2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/flightphp/core/zipball/88d7032928c09b98e65ccd87b7f8a341a40cc3d2",
-                "reference": "88d7032928c09b98e65ccd87b7f8a341a40cc3d2",
-=======
     "content-hash": "4b3a253f57d31d773b6986822b8dc6cf",
     "packages": [
         {
@@ -107,19 +91,12 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/flightphp/core/zipball/095a46663f7090c549f5c3459f0dada893b3b5d9",
                 "reference": "095a46663f7090c549f5c3459f0dada893b3b5d9",
->>>>>>> Stashed changes
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": ">=7.4"
             },
-<<<<<<< Updated upstream
-            "require-dev": {
-                "ext-pdo_sqlite": "*",
-                "flightphp/container": "^1.0",
-                "flightphp/runway": "^1.2",
-=======
             "replace": {
                 "mikecao/flight": "2.0.2"
             },
@@ -127,17 +104,13 @@
                 "ext-pdo_sqlite": "*",
                 "flightphp/container": "^1.0",
                 "flightphp/runway": "^0.2.3 || ^1.0",
->>>>>>> Stashed changes
                 "league/container": "^4.2",
                 "level-2/dice": "^4.0",
                 "phpstan/extension-installer": "^1.4",
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^9.6",
                 "rregeer/phpunit-coverage-check": "^0.3.1",
-<<<<<<< Updated upstream
-=======
                 "spatie/phpunit-watcher": "^1.23 || ^1.24",
->>>>>>> Stashed changes
                 "squizlabs/php_codesniffer": "^3.11"
             },
             "suggest": {
@@ -178,14 +151,6 @@
             "homepage": "http://flightphp.com",
             "support": {
                 "issues": "https://github.com/flightphp/core/issues",
-<<<<<<< Updated upstream
-                "source": "https://github.com/flightphp/core/tree/v3.18.0"
-            },
-            "time": "2026-01-15T01:44:32+00:00"
-        }
-    ],
-    "packages-dev": [],
-=======
                 "source": "https://github.com/flightphp/core/tree/v3.17.2"
             },
             "time": "2025-10-03T21:05:48+00:00"
@@ -529,19 +494,14 @@
             "time": "2025-09-03T13:47:57+00:00"
         }
     ],
->>>>>>> Stashed changes
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-<<<<<<< Updated upstream
-        "php": ">=7.4"
-=======
         "php": "^7.4 || ^8.0",
         "ext-json": "*"
->>>>>>> Stashed changes
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
