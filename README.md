@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # EXAM_FINAL_S3
 
 BNGRC
@@ -32,6 +33,8 @@ BNGRC
 │   └── donnes.sql
 └── composer.json
 <<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

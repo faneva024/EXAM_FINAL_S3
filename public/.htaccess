@@ -1,4 +1,22 @@
 RewriteEngine On
+<<<<<<< Updated upstream
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
+=======
+RewriteBase /ETU004246/EXAM/
+
+# Servir directement les fichiers statiques (images, CSS, JS)
+RewriteRule ^assets/ - [L]
+RewriteRule ^styles\.css$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# BEGIN GZIP
+<ifmodule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/text text/html text/plain text/xml text/css application/x-javascript application/javascript
+</ifmodule>
+# END GZIP
+>>>>>>> Stashed changes
