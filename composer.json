@@ -1,20 +1,4 @@
 {
-<<<<<<< Updated upstream
-    "name": "takalo-takalo/app",
-    "description": "Plateforme d'échange d'objets",
-    "type": "project",
-    "require": {
-        "php": ">=7.4",
-        "mikecao/flight": "^3.0"
-    },
-    "autoload": {
-        "classmap": [
-            "app/models/",
-            "app/controllers/"
-        ]
-    }
-}
-=======
     "name": "flightphp/skeleton",
     "description": "A Flight PHP framework skeleton app",
     "license": "MIT",
@@ -41,4 +25,3 @@
         "start": "php -S localhost:8000 -t public"
     }
 }
->>>>>>> Stashed changes

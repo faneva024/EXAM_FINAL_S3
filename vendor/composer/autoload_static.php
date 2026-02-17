@@ -4,33 +4,6 @@
 
 namespace Composer\Autoload;
 
-<<<<<<< Updated upstream
-class ComposerStaticInit9d3170f08944c74e12c221f1418194e7
-{
-    public static $files = array (
-        'fc73bab8d04e21bcdda37ca319c63800' => __DIR__ . '/..' . '/mikecao/flight/flight/autoload.php',
-    );
-
-    public static $classMap = array (
-        'AdminController' => __DIR__ . '/../..' . '/app/controllers/AdminController.php',
-        'AdminModel' => __DIR__ . '/../..' . '/app/models/AdminModel.php',
-        'AuthController' => __DIR__ . '/../..' . '/app/controllers/AuthController.php',
-        'BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController.php',
-        'BaseModel' => __DIR__ . '/../..' . '/app/models/BaseModel.php',
-        'CategorieModel' => __DIR__ . '/../..' . '/app/models/CategorieModel.php',
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'EchangeController' => __DIR__ . '/../..' . '/app/controllers/EchangeController.php',
-        'EchangeModel' => __DIR__ . '/../..' . '/app/models/EchangeModel.php',
-        'HistoriqueModel' => __DIR__ . '/../..' . '/app/models/HistoriqueModel.php',
-        'HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
-        'ObjetController' => __DIR__ . '/../..' . '/app/controllers/ObjetController.php',
-        'ObjetHistoriqueModel' => __DIR__ . '/../..' . '/app/models/ObjetHistoriqueModel.php',
-        'ObjetImageModel' => __DIR__ . '/../..' . '/app/models/ObjetImageModel.php',
-        'ObjetModel' => __DIR__ . '/../..' . '/app/models/ObjetModel.php',
-        'SearchController' => __DIR__ . '/../..' . '/app/controllers/SearchController.php',
-        'UserController' => __DIR__ . '/../..' . '/app/controllers/UserController.php',
-        'UserModel' => __DIR__ . '/../..' . '/app/models/UserModel.php',
-=======
 class ComposerStaticInit4b3a253f57d31d773b6986822b8dc6cf
 {
     public static $files = array (
@@ -214,19 +187,14 @@ class ComposerStaticInit4b3a253f57d31d773b6986822b8dc6cf
         'flight\\debug\\tracy\\ResponseExtension' => __DIR__ . '/..' . '/flightphp/tracy-extensions/src/debug/tracy/ResponseExtension.php',
         'flight\\debug\\tracy\\SessionExtension' => __DIR__ . '/..' . '/flightphp/tracy-extensions/src/debug/tracy/SessionExtension.php',
         'flight\\debug\\tracy\\TracyExtensionLoader' => __DIR__ . '/..' . '/flightphp/tracy-extensions/src/debug/tracy/TracyExtensionLoader.php',
->>>>>>> Stashed changes
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-<<<<<<< Updated upstream
-            $loader->classMap = ComposerStaticInit9d3170f08944c74e12c221f1418194e7::$classMap;
-=======
             $loader->prefixLengthsPsr4 = ComposerStaticInit4b3a253f57d31d773b6986822b8dc6cf::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit4b3a253f57d31d773b6986822b8dc6cf::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit4b3a253f57d31d773b6986822b8dc6cf::$classMap;
->>>>>>> Stashed changes
 
         }, null, ClassLoader::class);
     }

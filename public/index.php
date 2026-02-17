@@ -1,25 +1,4 @@
 <?php
-<<<<<<< Updated upstream
-/**
- * Takalo-takalo - Plateforme d'échange d'objets
- * Point d'entrée principal
- */
-
-// Démarrage de la session
-session_start();
-
-// Autoloader de Composer
-require __DIR__ . '/../vendor/autoload.php';
-
-// Chargement des fichiers de configuration
-require __DIR__ . '/../app/config/bootstrap.php';
-require __DIR__ . '/../app/config/config.php';
-require __DIR__ . '/../app/config/services.php';
-require __DIR__ . '/../app/config/routes.php';
-
-// Démarrage de l'application Flight
-Flight::start();
-=======
 ini_set('display_errors',1);
 
 /*
@@ -49,4 +28,3 @@ ini_set('display_errors',1);
 $ds = DIRECTORY_SEPARATOR;
 //require(__DIR__. $ds .'app' . $ds . 'config' . $ds . 'bootstrap.php');
 require(__DIR__. $ds . '..' . $ds . 'app' . $ds . 'config' . $ds . 'bootstrap.php');
->>>>>>> Stashed changes

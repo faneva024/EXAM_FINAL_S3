@@ -42,29 +42,11 @@ namespace Composer\Autoload;
  */
 class ClassLoader
 {
-<<<<<<< Updated upstream
-    /** @var \Closure(string):void */
-    private static $includeFile;
-
-    /** @var string|null */
-=======
     /** @var ?string */
->>>>>>> Stashed changes
     private $vendorDir;
 
     // PSR-4
     /**
-<<<<<<< Updated upstream
-     * @var array<string, array<string, int>>
-     */
-    private $prefixLengthsPsr4 = array();
-    /**
-     * @var array<string, list<string>>
-     */
-    private $prefixDirsPsr4 = array();
-    /**
-     * @var list<string>
-=======
      * @var array[]
      * @psalm-var array<string, array<string, int>>
      */
@@ -77,23 +59,11 @@ class ClassLoader
     /**
      * @var array[]
      * @psalm-var array<string, string>
->>>>>>> Stashed changes
      */
     private $fallbackDirsPsr4 = array();
 
     // PSR-0
     /**
-<<<<<<< Updated upstream
-     * List of PSR-0 prefixes
-     *
-     * Structured as array('F (first letter)' => array('Foo\Bar (full prefix)' => array('path', 'path2')))
-     *
-     * @var array<string, array<string, list<string>>>
-     */
-    private $prefixesPsr0 = array();
-    /**
-     * @var list<string>
-=======
      * @var array[]
      * @psalm-var array<string, array<string, string[]>>
      */
@@ -101,7 +71,6 @@ class ClassLoader
     /**
      * @var array[]
      * @psalm-var array<string, string>
->>>>>>> Stashed changes
      */
     private $fallbackDirsPsr0 = array();
 
@@ -109,12 +78,8 @@ class ClassLoader
     private $useIncludePath = false;
 
     /**
-<<<<<<< Updated upstream
-     * @var array<string, string>
-=======
      * @var string[]
      * @psalm-var array<string, string>
->>>>>>> Stashed changes
      */
     private $classMap = array();
 
@@ -122,17 +87,6 @@ class ClassLoader
     private $classMapAuthoritative = false;
 
     /**
-<<<<<<< Updated upstream
-     * @var array<string, bool>
-     */
-    private $missingClasses = array();
-
-    /** @var string|null */
-    private $apcuPrefix;
-
-    /**
-     * @var array<string, self>
-=======
      * @var bool[]
      * @psalm-var array<string, bool>
      */
@@ -143,32 +97,19 @@ class ClassLoader
 
     /**
      * @var self[]
->>>>>>> Stashed changes
      */
     private static $registeredLoaders = array();
 
     /**
-<<<<<<< Updated upstream
-     * @param string|null $vendorDir
-=======
      * @param ?string $vendorDir
->>>>>>> Stashed changes
      */
     public function __construct($vendorDir = null)
     {
         $this->vendorDir = $vendorDir;
-<<<<<<< Updated upstream
-        self::initializeIncludeClosure();
-    }
-
-    /**
-     * @return array<string, list<string>>
-=======
     }
 
     /**
      * @return string[]
->>>>>>> Stashed changes
      */
     public function getPrefixes()
     {
@@ -180,12 +121,8 @@ class ClassLoader
     }
 
     /**
-<<<<<<< Updated upstream
-     * @return array<string, list<string>>
-=======
      * @return array[]
      * @psalm-return array<string, array<int, string>>
->>>>>>> Stashed changes
      */
     public function getPrefixesPsr4()
     {
@@ -193,12 +130,8 @@ class ClassLoader
     }
 
     /**
-<<<<<<< Updated upstream
-     * @return list<string>
-=======
      * @return array[]
      * @psalm-return array<string, string>
->>>>>>> Stashed changes
      */
     public function getFallbackDirs()
     {
@@ -206,12 +139,8 @@ class ClassLoader
     }
 
     /**
-<<<<<<< Updated upstream
-     * @return list<string>
-=======
      * @return array[]
      * @psalm-return array<string, string>
->>>>>>> Stashed changes
      */
     public function getFallbackDirsPsr4()
     {
@@ -219,12 +148,8 @@ class ClassLoader
     }
 
     /**
-<<<<<<< Updated upstream
-     * @return array<string, string> Array of classname => path
-=======
      * @return string[] Array of classname => path
      * @psalm-return array<string, string>
->>>>>>> Stashed changes
      */
     public function getClassMap()
     {
@@ -232,12 +157,8 @@ class ClassLoader
     }
 
     /**
-<<<<<<< Updated upstream
-     * @param array<string, string> $classMap Class to filename map
-=======
      * @param string[] $classMap Class to filename map
      * @psalm-param array<string, string> $classMap
->>>>>>> Stashed changes
      *
      * @return void
      */
@@ -254,42 +175,24 @@ class ClassLoader
      * Registers a set of PSR-0 directories for a given prefix, either
      * appending or prepending to the ones previously set for this prefix.
      *
-<<<<<<< Updated upstream
-     * @param string              $prefix  The prefix
-     * @param list<string>|string $paths   The PSR-0 root directories
-     * @param bool                $prepend Whether to prepend the directories
-=======
      * @param string          $prefix  The prefix
      * @param string[]|string $paths   The PSR-0 root directories
      * @param bool            $prepend Whether to prepend the directories
->>>>>>> Stashed changes
      *
      * @return void
      */
     public function add($prefix, $paths, $prepend = false)
     {
-<<<<<<< Updated upstream
-        $paths = (array) $paths;
-        if (!$prefix) {
-            if ($prepend) {
-                $this->fallbackDirsPsr0 = array_merge(
-                    $paths,
-=======
         if (!$prefix) {
             if ($prepend) {
                 $this->fallbackDirsPsr0 = array_merge(
                     (array) $paths,
->>>>>>> Stashed changes
                     $this->fallbackDirsPsr0
                 );
             } else {
                 $this->fallbackDirsPsr0 = array_merge(
                     $this->fallbackDirsPsr0,
-<<<<<<< Updated upstream
-                    $paths
-=======
                     (array) $paths
->>>>>>> Stashed changes
                 );
             }
 
@@ -298,31 +201,19 @@ class ClassLoader
 
         $first = $prefix[0];
         if (!isset($this->prefixesPsr0[$first][$prefix])) {
-<<<<<<< Updated upstream
-            $this->prefixesPsr0[$first][$prefix] = $paths;
-=======
             $this->prefixesPsr0[$first][$prefix] = (array) $paths;
->>>>>>> Stashed changes
 
             return;
         }
         if ($prepend) {
             $this->prefixesPsr0[$first][$prefix] = array_merge(
-<<<<<<< Updated upstream
-                $paths,
-=======
                 (array) $paths,
->>>>>>> Stashed changes
                 $this->prefixesPsr0[$first][$prefix]
             );
         } else {
             $this->prefixesPsr0[$first][$prefix] = array_merge(
                 $this->prefixesPsr0[$first][$prefix],
-<<<<<<< Updated upstream
-                $paths
-=======
                 (array) $paths
->>>>>>> Stashed changes
             );
         }
     }
@@ -331,15 +222,9 @@ class ClassLoader
      * Registers a set of PSR-4 directories for a given namespace, either
      * appending or prepending to the ones previously set for this namespace.
      *
-<<<<<<< Updated upstream
-     * @param string              $prefix  The prefix/namespace, with trailing '\\'
-     * @param list<string>|string $paths   The PSR-4 base directories
-     * @param bool                $prepend Whether to prepend the directories
-=======
      * @param string          $prefix  The prefix/namespace, with trailing '\\'
      * @param string[]|string $paths   The PSR-4 base directories
      * @param bool            $prepend Whether to prepend the directories
->>>>>>> Stashed changes
      *
      * @throws \InvalidArgumentException
      *
@@ -347,29 +232,17 @@ class ClassLoader
      */
     public function addPsr4($prefix, $paths, $prepend = false)
     {
-<<<<<<< Updated upstream
-        $paths = (array) $paths;
-=======
->>>>>>> Stashed changes
         if (!$prefix) {
             // Register directories for the root namespace.
             if ($prepend) {
                 $this->fallbackDirsPsr4 = array_merge(
-<<<<<<< Updated upstream
-                    $paths,
-=======
                     (array) $paths,
->>>>>>> Stashed changes
                     $this->fallbackDirsPsr4
                 );
             } else {
                 $this->fallbackDirsPsr4 = array_merge(
                     $this->fallbackDirsPsr4,
-<<<<<<< Updated upstream
-                    $paths
-=======
                     (array) $paths
->>>>>>> Stashed changes
                 );
             }
         } elseif (!isset($this->prefixDirsPsr4[$prefix])) {
@@ -379,30 +252,18 @@ class ClassLoader
                 throw new \InvalidArgumentException("A non-empty PSR-4 prefix must end with a namespace separator.");
             }
             $this->prefixLengthsPsr4[$prefix[0]][$prefix] = $length;
-<<<<<<< Updated upstream
-            $this->prefixDirsPsr4[$prefix] = $paths;
-        } elseif ($prepend) {
-            // Prepend directories for an already registered namespace.
-            $this->prefixDirsPsr4[$prefix] = array_merge(
-                $paths,
-=======
             $this->prefixDirsPsr4[$prefix] = (array) $paths;
         } elseif ($prepend) {
             // Prepend directories for an already registered namespace.
             $this->prefixDirsPsr4[$prefix] = array_merge(
                 (array) $paths,
->>>>>>> Stashed changes
                 $this->prefixDirsPsr4[$prefix]
             );
         } else {
             // Append directories for an already registered namespace.
             $this->prefixDirsPsr4[$prefix] = array_merge(
                 $this->prefixDirsPsr4[$prefix],
-<<<<<<< Updated upstream
-                $paths
-=======
                 (array) $paths
->>>>>>> Stashed changes
             );
         }
     }
@@ -411,13 +272,8 @@ class ClassLoader
      * Registers a set of PSR-0 directories for a given prefix,
      * replacing any others previously set for this prefix.
      *
-<<<<<<< Updated upstream
-     * @param string              $prefix The prefix
-     * @param list<string>|string $paths  The PSR-0 base directories
-=======
      * @param string          $prefix The prefix
      * @param string[]|string $paths  The PSR-0 base directories
->>>>>>> Stashed changes
      *
      * @return void
      */
@@ -434,13 +290,8 @@ class ClassLoader
      * Registers a set of PSR-4 directories for a given namespace,
      * replacing any others previously set for this namespace.
      *
-<<<<<<< Updated upstream
-     * @param string              $prefix The prefix/namespace, with trailing '\\'
-     * @param list<string>|string $paths  The PSR-4 base directories
-=======
      * @param string          $prefix The prefix/namespace, with trailing '\\'
      * @param string[]|string $paths  The PSR-4 base directories
->>>>>>> Stashed changes
      *
      * @throws \InvalidArgumentException
      *
@@ -574,12 +425,7 @@ class ClassLoader
     public function loadClass($class)
     {
         if ($file = $this->findFile($class)) {
-<<<<<<< Updated upstream
-            $includeFile = self::$includeFile;
-            $includeFile($file);
-=======
             includeFile($file);
->>>>>>> Stashed changes
 
             return true;
         }
@@ -630,15 +476,9 @@ class ClassLoader
     }
 
     /**
-<<<<<<< Updated upstream
-     * Returns the currently registered loaders keyed by their corresponding vendor directories.
-     *
-     * @return array<string, self>
-=======
      * Returns the currently registered loaders indexed by their corresponding vendor directories.
      *
      * @return self[]
->>>>>>> Stashed changes
      */
     public static function getRegisteredLoaders()
     {
@@ -715,30 +555,6 @@ class ClassLoader
 
         return false;
     }
-<<<<<<< Updated upstream
-
-    /**
-     * @return void
-     */
-    private static function initializeIncludeClosure()
-    {
-        if (self::$includeFile !== null) {
-            return;
-        }
-
-        /**
-         * Scope isolated include.
-         *
-         * Prevents access to $this/self from included files.
-         *
-         * @param  string $file
-         * @return void
-         */
-        self::$includeFile = \Closure::bind(static function($file) {
-            include $file;
-        }, null, null);
-    }
-=======
 }
 
 /**
@@ -753,5 +569,4 @@ class ClassLoader
 function includeFile($file)
 {
     include $file;
->>>>>>> Stashed changes
 }

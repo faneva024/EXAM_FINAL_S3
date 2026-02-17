@@ -1,39 +1,15 @@
 <?php return array(
     'root' => array(
-<<<<<<< Updated upstream
-        'name' => 'takalo-takalo/app',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
-        'type' => 'project',
-=======
         'name' => 'flightphp/skeleton',
         'pretty_version' => 'v1.2.0',
         'version' => '1.2.0.0',
         'reference' => null,
         'type' => 'library',
->>>>>>> Stashed changes
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-<<<<<<< Updated upstream
-        'mikecao/flight' => array(
-            'pretty_version' => 'v3.18.0',
-            'version' => '3.18.0.0',
-            'reference' => '88d7032928c09b98e65ccd87b7f8a341a40cc3d2',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../mikecao/flight',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'takalo-takalo/app' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
-            'type' => 'project',
-=======
         'adhocore/cli' => array(
             'pretty_version' => 'v1.9.4',
             'version' => '1.9.4.0',
@@ -66,13 +42,10 @@
             'version' => '1.2.0.0',
             'reference' => null,
             'type' => 'library',
->>>>>>> Stashed changes
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-<<<<<<< Updated upstream
-=======
         'flightphp/tracy-extensions' => array(
             'pretty_version' => 'v0.2.7',
             'version' => '0.2.7.0',
@@ -115,6 +88,5 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
->>>>>>> Stashed changes
     ),
 );
