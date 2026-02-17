@@ -165,18 +165,6 @@ body {
   gap: 16px;
 }
 
-/* ...existing code... */
-
-/* ===== HEADER LOGO ===== */
-.header-logo {
-  height: 36px;
-  width: auto;
-  object-fit: contain;
-  border-radius: 4px;
-}
-
-/* ...existing code... */
-
 .sidebar-toggle {
   background: none;
   border: 1px solid #e2e8f0;
@@ -232,6 +220,18 @@ body {
   align-items: center;
   gap: 6px;
 }
+
+/* ...existing code... */
+
+/* ===== HEADER LOGO ===== */
+.header-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* ...existing code... */
 
 /* ===== MAIN CONTENT ===== */
 .main-content {

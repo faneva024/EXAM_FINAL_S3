@@ -311,3 +311,136 @@ INSERT INTO BNGRC_Dispatch (id_don, id_besoin, quantite_attribuee, date_dispatch
 (12, 3, 100, '2025-01-20 10:20:00'),
 -- Don 13 (Bâches 150) → Besoin 4 (Mananjary Bâches 150)
 (13, 4, 150, '2025-01-20 10:25:00');
+-- ============================================
+-- SCRIPT DE RÉINITIALISATION DES DONNÉES BNGRC
+-- ============================================
+
+USE BNGRC;
+
+-- Désactiver les vérifications de clés étrangères
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Vider toutes les tables
+TRUNCATE TABLE BNGRC_Dispatch;
+TRUNCATE TABLE BNGRC_Achat;
+TRUNCATE TABLE BNGRC_Dons;
+TRUNCATE TABLE BNGRC_Besoins;
+TRUNCATE TABLE BNGRC_User;
+TRUNCATE TABLE BNGRC_Ville;
+TRUNCATE TABLE BNGRC_CategoriesBesoins;
+TRUNCATE TABLE BNGRC_Configuration;
+
+-- Réactiver les vérifications de clés étrangères
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- ============================================
+-- NOUVELLES DONNÉES
+-- ============================================
+
+-- Configuration
+INSERT INTO BNGRC_Configuration (cle, valeur) VALUES ('frais_achat_pourcent', '10');
+
+-- 3 catégories
+INSERT INTO BNGRC_CategoriesBesoins (nom_categorie) VALUES
+('En nature'), ('En matériels'), ('En argent');
+
+-- 10 villes sinistrées
+INSERT INTO BNGRC_Ville (nom_ville) VALUES
+('Mananjary'), ('Manakara'), ('Farafangana'), ('Vangaindrano'), ('Ikongo'),
+('Nosy Varika'), ('Ifanadiana'), ('Fort-Dauphin'), ('Morondava'), ('Antsirabe');
+
+-- 8 utilisateurs (donateurs)
+INSERT INTO BNGRC_User (nom, email, mot_de_passe, role) VALUES
+('ONG Hope', 'contact@onghope.mg', 'pass123', 'donateur'),
+('Croix-Rouge Madagascar', 'dons@croixrouge.mg', 'pass123', 'donateur'),
+('UNICEF Madagascar', 'aide@unicef.mg', 'pass123', 'donateur'),
+('PAM', 'contact@pam.org', 'pass123', 'donateur'),
+('Ambassade de France', 'aide@ambafrance.mg', 'pass123', 'donateur'),
+('Fondation Telma', 'rse@telma.mg', 'pass123', 'donateur'),
+('Diaspora Malgache', 'solidarite@diaspora.mg', 'pass123', 'donateur'),
+('Admin BNGRC', 'admin@bngrc.mg', 'admin123', 'admin');
+
+-- ============================================
+-- BESOINS (30 besoins répartis sur les villes)
+-- ============================================
+INSERT INTO BNGRC_Besoins (id_ville, id_categorie, nom_besoin, prix_unitaire, quantite, date_saisie) VALUES
+-- Mananjary (1) - Date la plus ancienne
+(1, 1, 'Riz', 2500.00, 100, '2025-01-10 08:00:00'),
+(1, 1, 'Huile', 8000.00, 50, '2025-01-10 08:30:00'),
+(1, 2, 'Tôles', 35000.00, 80, '2025-01-10 09:00:00'),
+
+-- Manakara (2)
+(2, 1, 'Riz', 2500.00, 300, '2025-01-11 08:00:00'),
+(2, 1, 'Sucre', 4000.00, 100, '2025-01-11 08:30:00'),
+(2, 2, 'Bâches', 20000.00, 60, '2025-01-11 09:00:00'),
+
+-- Farafangana (3)
+(3, 1, 'Riz', 2500.00, 500, '2025-01-12 08:00:00'),
+(3, 1, 'Conserves', 6000.00, 150, '2025-01-12 08:30:00'),
+(3, 2, 'Clous', 12000.00, 100, '2025-01-12 09:00:00'),
+
+-- Vangaindrano (4)
+(4, 1, 'Riz', 2500.00, 200, '2025-01-13 08:00:00'),
+(4, 1, 'Médicaments', 15000.00, 40, '2025-01-13 08:30:00'),
+(4, 2, 'Outils', 30000.00, 25, '2025-01-13 09:00:00'),
+
+-- Ikongo (5)
+(5, 1, 'Sucre', 4000.00, 80, '2025-01-14 08:00:00'),
+(5, 1, 'Savon', 3000.00, 120, '2025-01-14 08:30:00'),
+(5, 2, 'Pelles', 18000.00, 30, '2025-01-14 09:00:00'),
+
+-- Nosy Varika (6)
+(6, 1, 'Huile', 8000.00, 70, '2025-01-15 08:00:00'),
+(6, 2, 'Bâches', 20000.00, 90, '2025-01-15 08:30:00'),
+(6, 3, 'Fonds reconstruction', 500000.00, 1, '2025-01-15 09:00:00'),
+
+-- Ifanadiana (7) - Date la plus récente
+(7, 1, 'Riz', 2500.00, 150, '2025-01-16 08:00:00'),
+(7, 1, 'Vêtements', 25000.00, 50, '2025-01-16 08:30:00'),
+(7, 2, 'Tôles', 35000.00, 40, '2025-01-16 09:00:00'),
+(7, 3, 'Aide urgente', 300000.00, 1, '2025-01-16 09:30:00'),
+
+-- Fort-Dauphin (8)
+(8, 1, 'Riz', 2500.00, 400, '2025-01-17 08:00:00'),
+(8, 2, 'Ciment', 45000.00, 50, '2025-01-17 08:30:00'),
+(8, 3, 'Fonds alimentaire', 800000.00, 1, '2025-01-17 09:00:00'),
+
+-- Morondava (9)
+(9, 1, 'Conserves', 6000.00, 200, '2025-01-18 08:00:00'),
+(9, 2, 'Bois', 15000.00, 80, '2025-01-18 08:30:00'),
+
+-- Antsirabe (10)
+(10, 1, 'Riz', 2500.00, 250, '2025-01-19 08:00:00'),
+(10, 2, 'Brouettes', 85000.00, 15, '2025-01-19 08:30:00');
+
+-- ============================================
+-- DONS (20 dons)
+-- ============================================
+INSERT INTO BNGRC_Dons (id_user, id_categorie, nom_don, quantite, montant, date_don) VALUES
+-- Dons en nature (catégorie 1)
+(1, 1, 'Riz', 400, NULL, '2025-01-20 08:00:00'),
+(2, 1, 'Riz', 300, NULL, '2025-01-20 09:00:00'),
+(3, 1, 'Huile', 80, NULL, '2025-01-20 10:00:00'),
+(4, 1, 'Sucre', 150, NULL, '2025-01-21 08:00:00'),
+(1, 1, 'Conserves', 200, NULL, '2025-01-21 09:00:00'),
+(5, 1, 'Médicaments', 30, NULL, '2025-01-21 10:00:00'),
+(6, 1, 'Savon', 100, NULL, '2025-01-22 08:00:00'),
+(2, 1, 'Vêtements', 40, NULL, '2025-01-22 09:00:00'),
+
+-- Dons en matériels (catégorie 2)
+(3, 2, 'Tôles', 60, NULL, '2025-01-22 10:00:00'),
+(4, 2, 'Bâches', 100, NULL, '2025-01-23 08:00:00'),
+(5, 2, 'Clous', 80, NULL, '2025-01-23 09:00:00'),
+(6, 2, 'Outils', 20, NULL, '2025-01-23 10:00:00'),
+(7, 2, 'Pelles', 25, NULL, '2025-01-24 08:00:00'),
+(1, 2, 'Ciment', 30, NULL, '2025-01-24 09:00:00'),
+
+-- Dons en argent (catégorie 3)
+(2, 3, 'Don financier', NULL, 1000000, '2025-01-24 10:00:00'),
+(3, 3, 'Aide urgente', NULL, 500000, '2025-01-25 08:00:00'),
+(4, 3, 'Fonds solidarité', NULL, 750000, '2025-01-25 09:00:00'),
+(5, 3, 'Don entreprise', NULL, 300000, '2025-01-25 10:00:00'),
+(6, 3, 'Aide humanitaire', NULL, 600000, '2025-01-26 08:00:00'),
+(7, 3, 'Don diaspora', NULL, 450000, '2025-01-26 09:00:00');
+
+-- Pas de dispatch initial (tout est à zéro)
