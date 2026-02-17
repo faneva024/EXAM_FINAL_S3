@@ -67,7 +67,7 @@ $error = $_GET['error'] ?? null;
                         <th class="text-end">Attribué</th>
                         <th class="text-end">Restant</th>
                         <th class="text-end">Montant Restant</th>
-                        <th class="text-center">Achat</th>
+                        <th class="text-center">Faire un Achat</th>
                     </tr>
                 </thead>
                 <tbody>

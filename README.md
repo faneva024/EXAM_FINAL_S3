@@ -1,106 +1,84 @@
-project-root/
-│
+# Gestionnaire de Tâches (ToDo List)
+
+Ce projet est une application web de gestion de tâches (ToDo List) développée en PHP, utilisant le framework FlightPHP et une architecture MVC.
+
+## Fonctionnalités
+
+- Ajout, modification et suppression de tâches
+- Gestion des achats (module Achat)
+- Interface utilisateur simple et responsive
+- Authentification (si implémentée)
+- Persistance des données via une base de données SQL
+
+## Structure du projet
+
+```
+.
 ├── app/
-│   ├── config/
-│   │   ├── bootstrap.php        # Initialisation de Flight, autoload, config et services
-│   │   ├── config.php           # Configuration générale et base de données
-│   │   ├── services.php         # Services comme Debugger, PDO, etc.
-│   │   └── routes.php           # Toutes les routes du projet
-│   │
-│   ├── controllers/
-│   │   └── CooperativeController.php   # Toutes les actions pour véhicules, chauffeurs, affectations, trajets
-│   │
-│   ├── models/
-│   │   ├── VehiculeModel.php           # Gestion des véhicules
-│   │   ├── ChauffeurModel.php          # Gestion des chauffeurs
-│   │   ├── AffectationModel.php        # Gestion des affectations
-│   │   └── TrajetModel.php             # Gestion des trajets
-│   │
-│   ├── views/
-│   │   ├── home.php                     # Page d'accueil
-│   │   ├── vehicules.php                # Liste de tous les véhicules
-│   │   ├── chauffeurs.php               # Liste de tous les chauffeurs
-│   │   ├── affectations.php             # Liste de toutes les affectations
-│   │   └── trajets.php                  # Liste des trajets d'une affectation
-│
-├── public/
-│   ├── index.php                        # Point d'entrée du projet
-│   ├── images/                          # Images des véhicules ou trajets si nécessaire
-│   │   └── ...                          # Ex: 1.jpg, 2.jpg, ...
-│   └── styles.css                        # Styles CSS
-│
-├── vendor/                               # Composer autoload et packages
-│   └── autoload.php
-│
-├── base.sql                              # Script SQL complet pour créer et remplir la base
-├── composer.json                         # Dépendances et autoload
-├── composer.lock
-├── Vagrantfile                            # Si tu utilises Vagrant
-└── README.md                              # Optionnel, infos projet
+│   ├── commands/         # Commandes CLI (si présentes)
+│   ├── config/           # Fichiers de configuration
+│   ├── controllers/      # Contrôleurs MVC
+│   ├── log/              # Logs de l'application
+│   ├── middlewares/      # Middlewares HTTP
+│   ├── models/           # Modèles de données
+│   └── views/            # Vues (templates)
+├── assets/               # Ressources statiques
+├── public/               # Racine web (index.php, router.php, assets)
+├── vendor/               # Dépendances Composer
+├── composer.json         # Dépendances PHP
+├── docker-compose.yml    # Configuration Docker
+├── Vagrantfile           # Configuration Vagrant
+├── README.md             # Ce fichier
+└── ...
+```
 
+## Installation
 
-URL de recherche:
-/ → liste des véhicules
+1. **Cloner le dépôt :**
+   ```sh
+   git clone <url-du-repo>
+   cd <nom-du-repo>
+   ```
 
-/vehicule/@id → détail véhicule
+2. **Installer les dépendances PHP :**
+   ```sh
+   composer install
+   ```
 
-/chauffeurs → liste chauffeurs
+3. **Configurer l'environnement :**
+   - Copier `app/config/config_sample.php` en `app/config/config.php` et adapter les paramètres (base de données, etc.).
 
-/affectations/@date → liste des trajets pour une date
+4. **Initialiser la base de données :**
+   - Importer le fichier `data.sql` dans votre SGBD (MySQL, MariaDB, etc.).
 
+5. **Lancer l'application :**
+   - Avec PHP :
+     ```sh
+     php -S localhost:8000 -t public
+     ```
+   - Ou via Docker :
+     ```sh
+     docker-compose up
+     ```
 
----
+## Utilisation
 
-## 📊 Fonctionnalités principales
+Accédez à [http://localhost:8000](http://localhost:8000) dans votre navigateur pour utiliser l'application.
 
-### 🚗 Véhicules & Chauffeurs
-- Liste des véhicules
-- Liste des chauffeurs
-- Affectation chauffeur ↔ véhicule par jour
+## Dépendances principales
 
-### 🛣 Gestion des trajets
-- Enregistrement des trajets
-- Distance, recette, carburant
-- Aller / retour
+- [FlightPHP](https://flightphp.com/)
+- [Tracy](https://tracy.nette.org/)
+- PHP >= 7.4
 
-### 📈 Statistiques
-- Liste journalière des véhicules et chauffeurs
-- Kilométrage, recette et carburant par jour
-- Bénéfice total par véhicule
-- Bénéfice total par jour
-- Trajets les plus rentables
+## Contribution
 
-### 🔧 Pannes
-- Enregistrement des pannes
-- Véhicules disponibles par date
-- Taux de panne mensuel par véhicule
+Les contributions sont les bienvenues ! Merci de créer une issue ou une pull request.
 
-### 💰 Salaires
-- Versement minimum par véhicule
-- Calcul automatique du salaire journalier
-- Pourcentages configurables
-- Historique des salaires conservé
+## Licence
+
+Ce projet est sous licence MIT.
 
 ---
 
-## 🗄 Base de données
-Le fichier `base.sql` contient :
-- la création complète des tables
-- les clés primaires et étrangères
-- des données de test
-
-### Tables principales :
-- `cooperative_vehicule`
-- `cooperative_chauffeur`
-- `cooperative_affectation`
-- `cooperative_trajet`
-- `cooperative_panne`
-- `cooperative_versement_min`
-
----
-
-## ▶️ Installation
-
-1. Cloner le projet
-```bash
-git clone <repo>
+*Pour plus d'informations, consultez la documentation dans le fichier `TODOLIST_PROJET.txt`.*

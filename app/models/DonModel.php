@@ -10,7 +10,17 @@ class DonModel
     public function all(): array
     {
         $stmt = Flight::db()->query("
-            SELECT d.*, u.nom AS nom_user, c.nom_categorie
+            SELECT d.*, u.nom AS nom_user, c.nom_categorie,
+                CASE 
+                    WHEN d.id_categorie = 3 THEN d.montant
+                    WHEN d.montant IS NOT NULL AND d.montant > 0 THEN d.montant
+                    ELSE (
+                        SELECT b.prix_unitaire * d.quantite 
+                        FROM BNGRC_Besoins b 
+                        WHERE b.nom_besoin = d.nom_don AND b.id_categorie = d.id_categorie 
+                        LIMIT 1
+                    )
+                END AS montant_affiche
             FROM BNGRC_Dons d
             JOIN BNGRC_User u ON d.id_user = u.id_user
             JOIN BNGRC_CategoriesBesoins c ON d.id_categorie = c.id_categorie
