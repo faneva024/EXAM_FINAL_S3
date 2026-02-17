@@ -36,6 +36,7 @@ $router->group('', function(Router $router) use ($app) {
     $router->get('/dons', [$don, 'liste']);
     $router->get('/dons/ajouter', [$don, 'formulaire']);
     $router->post('/dons/ajouter', [$don, 'ajouter']);
+    $router->get('/api/besoins/suggestions', [$don, 'suggestionBesoins']);
 
     // ========== ACHATS ==========
     $achat = new AchatController($app);

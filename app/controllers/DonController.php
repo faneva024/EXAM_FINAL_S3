@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\DonModel;
 use app\models\CategorieModel;
 use app\models\UserModel;
+use app\models\BesoinModel;
 use Flight;
 use flight\Engine;
 
@@ -13,6 +14,7 @@ class DonController extends BaseController
     protected DonModel $donModel;
     protected CategorieModel $categorieModel;
     protected UserModel $userModel;
+    protected BesoinModel $besoinModel;
 
     public function __construct(?Engine $app = null)
     {
@@ -20,6 +22,7 @@ class DonController extends BaseController
         $this->donModel = new DonModel();
         $this->categorieModel = new CategorieModel();
         $this->userModel = new UserModel();
+        $this->besoinModel = new BesoinModel();
     }
 
     public function liste(): void
@@ -81,9 +84,25 @@ class DonController extends BaseController
                 $this->redirect('/dons/ajouter?error=1');
                 return;
             }
-            $this->donModel->ajouter($idUser, $idCategorie, $nomDon, $quantite, null);
+            // Montant = prix_unitaire (du besoin) * quantité
+            $montantCalc = (float) ($data->montant_calcule ?? 0);
+            $this->donModel->ajouter($idUser, $idCategorie, $nomDon, $quantite, $montantCalc > 0 ? $montantCalc : null);
         }
 
         $this->redirect('/dons');
+    }
+
+    /**
+     * API : retourne les noms de besoins existants pour une catégorie (suggestions)
+     */
+    public function suggestionBesoins(): void
+    {
+        $idCategorie = (int) (Flight::request()->query->id_categorie ?? 0);
+        if ($idCategorie <= 0) {
+            Flight::json([]);
+            return;
+        }
+        $noms = $this->besoinModel->nomsParCategorie($idCategorie);
+        Flight::json($noms);
     }
 }

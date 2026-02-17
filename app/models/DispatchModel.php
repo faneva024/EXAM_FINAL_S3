@@ -64,7 +64,8 @@ class DispatchModel
                 if ($don['nom_don'] != $besoin['nom_besoin'] || $don['id_categorie'] != $besoin['id_categorie']) continue;
                 if ($don['quantite_restante'] <= 0) continue;
 
-                $qteAttribuee = min($qteRestante, (float) $don['quantite_restante']);
+                $qteAttribuee = floor(min($qteRestante, (float) $don['quantite_restante']));
+                if ($qteAttribuee <= 0) continue;
                 $don['quantite_restante'] -= $qteAttribuee;
                 $qteRestante -= $qteAttribuee;
 
@@ -125,7 +126,8 @@ class DispatchModel
                 if ($don['nom_don'] != $besoin['nom_besoin'] || $don['id_categorie'] != $besoin['id_categorie']) continue;
                 if ($don['quantite_restante'] <= 0) continue;
 
-                $qteAttribuee = min($qteRestante, (float) $don['quantite_restante']);
+                $qteAttribuee = floor(min($qteRestante, (float) $don['quantite_restante']));
+                if ($qteAttribuee <= 0) continue;
                 $don['quantite_restante'] -= $qteAttribuee;
                 $qteRestante -= $qteAttribuee;
 
@@ -232,7 +234,8 @@ class DispatchModel
                     if ($qteRestanteAAttribuer <= 0) break;
                     if ($don['quantite_restante'] <= 0) continue;
 
-                    $qteAttribuee = min($qteRestanteAAttribuer, $don['quantite_restante']);
+                    $qteAttribuee = floor(min($qteRestanteAAttribuer, $don['quantite_restante']));
+                    if ($qteAttribuee <= 0) continue;
                     $don['quantite_restante'] -= $qteAttribuee;
                     $qteRestanteAAttribuer -= $qteAttribuee;
 
@@ -246,7 +249,7 @@ class DispatchModel
                             'prix_unitaire' => $besoin['prix_unitaire'],
                             'id_don' => $don['id_don'],
                             'nom_user' => $don['nom_user'] ?? 'Anonyme',
-                            'quantite_attribuee' => round($qteAttribuee, 2),
+                            'quantite_attribuee' => $qteAttribuee,
                             'pourcentage' => round($pourcentage * 100, 1),
                         ];
                     }
@@ -291,7 +294,8 @@ class DispatchModel
                 $montantRestant -= $montantAttribue;
 
                 $prixUnit = (float) $besoin['prix_unitaire'];
-                $qteAttribuee = $prixUnit > 0 ? $montantAttribue / $prixUnit : 0;
+                $qteAttribuee = $prixUnit > 0 ? floor($montantAttribue / $prixUnit) : 0;
+                if ($qteAttribuee <= 0) continue;
 
                 $resultats[] = [
                     'id_besoin' => $besoin['id_besoin'],
@@ -363,7 +367,7 @@ class DispatchModel
                 $montantRestantAAttribuer -= $montantAttribue;
 
                 $prixUnit = (float) $besoin['prix_unitaire'];
-                $qteAttribuee = $prixUnit > 0 ? $montantAttribue / $prixUnit : 0;
+                $qteAttribuee = $prixUnit > 0 ? floor($montantAttribue / $prixUnit) : 0;
 
                 if ($qteAttribuee > 0) {
                     $resultats[] = [
@@ -375,7 +379,7 @@ class DispatchModel
                         'prix_unitaire' => $besoin['prix_unitaire'],
                         'id_don' => $donA['id_don'],
                         'nom_user' => $donA['nom_user'] ?? 'Anonyme',
-                        'quantite_attribuee' => round($qteAttribuee, 4),
+                        'quantite_attribuee' => $qteAttribuee,
                         'pourcentage' => round($pourcentage * 100, 1),
                     ];
                 }

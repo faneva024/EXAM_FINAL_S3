@@ -48,4 +48,16 @@ class BesoinModel
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
         return $data ?: null;
     }
+
+    /**
+     * Récupère les noms distincts de besoins par catégorie avec prix unitaire (pour suggestions)
+     */
+    public function nomsParCategorie(int $idCategorie): array
+    {
+        $stmt = Flight::db()->prepare(
+            "SELECT DISTINCT nom_besoin, prix_unitaire FROM BNGRC_Besoins WHERE id_categorie = :idCat ORDER BY nom_besoin"
+        );
+        $stmt->execute(['idCat' => $idCategorie]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

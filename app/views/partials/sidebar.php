@@ -49,13 +49,13 @@ function isActive(string $currentUri, string $path): string {
         </a>
         <a href="<?= $base ?>/dons/ajouter" class="sidebar-link <?= isActive($currentUri, '/dons/ajouter') ?>">
             <i class="bi bi-plus-circle"></i>
-            <span>Saisir un don</span>
+            <span>Enregistrer un don</span>
         </a>
 
         <div class="nav-section-title">Distribution</div>
         <a href="<?= $base ?>/achats" class="sidebar-link <?= isActive($currentUri, '/achats') ?>">
             <i class="bi bi-cart"></i>
-            <span>Achats</span>
+            <span>Achats effectues</span>
         </a>
         <a href="<?= $base ?>/dispatch" class="sidebar-link <?= isActive($currentUri, '/dispatch') ?>">
             <i class="bi bi-truck"></i>

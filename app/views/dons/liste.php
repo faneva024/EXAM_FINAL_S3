@@ -39,7 +39,7 @@ include __DIR__ . '/../layout_header.php';
                         <th>Catégorie</th>
                         <th>Don</th>
                         <th class="text-end">Quantité</th>
-                        <th class="text-end">Montant</th>
+                        <th class="text-end">Montant (PU × Qté)</th>
                         <th>Date du don</th>
                     </tr>
                 </thead>
@@ -62,7 +62,7 @@ include __DIR__ . '/../layout_header.php';
                                 </td>
                                 <td><?= htmlspecialchars($d['nom_don']) ?></td>
                                 <td class="text-end"><?= $d['quantite'] ? number_format($d['quantite'], 0, ',', ' ') : '-' ?></td>
-                                <td class="text-end fw-bold"><?= $d['montant'] ? number_format($d['montant'], 0, ',', ' ') . ' Ar' : '-' ?></td>
+                                <td class="text-end fw-bold"><?= !empty($d['montant_affiche']) ? number_format($d['montant_affiche'], 0, ',', ' ') . ' Ar' : '-' ?></td>
                                 <td><?= date('d/m/Y H:i', strtotime($d['date_don'])) ?></td>
                             </tr>
                         <?php endforeach; ?>
