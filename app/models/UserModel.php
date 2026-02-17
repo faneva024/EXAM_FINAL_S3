@@ -20,4 +20,29 @@ class UserModel
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
         return $data ?: null;
     }
+
+    public function findByNom(string $nom): ?array
+    {
+        $stmt = Flight::db()->prepare("SELECT * FROM BNGRC_User WHERE nom = :nom LIMIT 1");
+        $stmt->execute(['nom' => $nom]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $data ?: null;
+    }
+
+    public function ajouter(string $nom, string $email = '', string $role = 'donateur'): int
+    {
+        if ($email === '') {
+            $email = strtolower(str_replace(' ', '.', $nom)) . '@donateur.local';
+        }
+        $stmt = Flight::db()->prepare(
+            "INSERT INTO BNGRC_User (nom, email, mot_de_passe, role) VALUES (:nom, :email, :mdp, :role)"
+        );
+        $stmt->execute([
+            'nom' => $nom,
+            'email' => $email,
+            'mdp' => password_hash('donateur', PASSWORD_DEFAULT),
+            'role' => $role,
+        ]);
+        return (int) Flight::db()->lastInsertId();
+    }
 }

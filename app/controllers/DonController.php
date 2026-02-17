@@ -45,9 +45,21 @@ class DonController extends BaseController
     public function ajouter(): void
     {
         $data = Flight::request()->data;
-        $idUser = (int) $data->id_user;
+        $idUser = (int) ($data->id_user ?? 0);
+        $nouveauNom = trim($data->nouveau_nom ?? '');
+        $nouveauEmail = trim($data->nouveau_email ?? '');
         $idCategorie = (int) $data->id_categorie;
         $nomDon = trim($data->nom_don ?? '');
+
+        // Si un nouveau donateur est saisi, on le crée ou on le retrouve
+        if ($nouveauNom !== '') {
+            $existant = $this->userModel->findByNom($nouveauNom);
+            if ($existant) {
+                $idUser = (int) $existant['id_user'];
+            } else {
+                $idUser = $this->userModel->ajouter($nouveauNom, $nouveauEmail);
+            }
+        }
 
         if ($idUser <= 0 || $idCategorie <= 0 || $nomDon === '') {
             $this->redirect('/dons/ajouter?error=1');

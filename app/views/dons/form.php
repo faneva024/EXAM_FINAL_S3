@@ -25,16 +25,29 @@ $error = $_GET['error'] ?? null;
     <div class="data-card-body with-padding">
         <form method="POST" action="<?= BASE_URL ?>/dons/ajouter" id="formDon">
             <div class="row g-3">
-                <div class="col-md-4">
-                    <label for="id_user" class="form-label">Donateur</label>
-                    <select name="id_user" id="id_user" class="form-select" required>
-                        <option value="">-- Choisir un donateur --</option>
-                        <?php foreach ($users as $u): ?>
-                            <option value="<?= $u['id_user'] ?>"><?= htmlspecialchars($u['nom']) ?></option>
-                        <?php endforeach; ?>
-                    </select>
+                <!-- Choix : donateur existant ou nouveau -->
+                <div class="col-md-6">
+                    <label class="form-label">Donateur</label>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="toggleNouveauDonateur" onchange="toggleDonateur()">
+                        <label class="form-check-label" for="toggleNouveauDonateur">Nouveau donateur</label>
+                    </div>
+                    <!-- Sélection donateur existant -->
+                    <div id="selectDonateur">
+                        <select name="id_user" id="id_user" class="form-select">
+                            <option value="">-- Choisir un donateur existant --</option>
+                            <?php foreach ($users as $u): ?>
+                                <option value="<?= $u['id_user'] ?>"><?= htmlspecialchars($u['nom']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <!-- Saisie nouveau donateur -->
+                    <div id="nouveauDonateur" style="display:none;">
+                        <input type="text" name="nouveau_nom" id="nouveau_nom" class="form-control mb-2" placeholder="Nom du donateur">
+                        <input type="email" name="nouveau_email" id="nouveau_email" class="form-control" placeholder="Email (optionnel)">
+                    </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="id_categorie" class="form-label">Catégorie</label>
                     <select name="id_categorie" id="id_categorie" class="form-select" required onchange="toggleDonType()">
                         <option value="">-- Choisir une catégorie --</option>
@@ -43,7 +56,7 @@ $error = $_GET['error'] ?? null;
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="nom_don" class="form-label">Nom du don</label>
                     <input type="text" name="nom_don" id="nom_don" class="form-control" placeholder="Ex: Riz, Tôles, Don financier..." required>
                 </div>
@@ -82,6 +95,19 @@ function toggleDonType() {
     const cat = document.getElementById('id_categorie').value;
     document.getElementById('sectionNature').style.display = (cat !== '3') ? '' : 'none';
     document.getElementById('sectionArgent').style.display = (cat === '3') ? '' : 'none';
+}
+
+function toggleDonateur() {
+    const isNew = document.getElementById('toggleNouveauDonateur').checked;
+    document.getElementById('selectDonateur').style.display = isNew ? 'none' : '';
+    document.getElementById('nouveauDonateur').style.display = isNew ? '' : 'none';
+    if (isNew) {
+        document.getElementById('id_user').value = '';
+        document.getElementById('nouveau_nom').focus();
+    } else {
+        document.getElementById('nouveau_nom').value = '';
+        document.getElementById('nouveau_email').value = '';
+    }
 }
 </script>
 
