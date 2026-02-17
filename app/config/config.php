@@ -49,8 +49,8 @@ $app->path(__DIR__ . $ds . '..' . $ds . '..');
 // Core config variables
 
 // Base URL fixe pour le déploiement serveur
-// define('BASE_URL', '/ETU004246/EXAM');
-// $app->set('flight.base_url', '/ETU004246/EXAM');
+// define('BASE_URL', '/ETU004246/EXAM_FINAL_S3/');
+// $app->set('flight.base_url', '/ETU004246/EXAM_FINAL_S3/'); // Set base URL for routing (e.g., '/myapp/'). Change if app is in a subdirectory. Default: '/' (root)
 
 define('BASE_URL', rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/'));          // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')	
 $app->set('flight.case_sensitive', false);    // Set true for case sensitive routes. Default: false
