@@ -1,15 +1,33 @@
 {
+<<<<<<< HEAD
     "name": "bngrc/app",
     "description": "BNGRC - Gestion des dons et besoins cyclones",
     "type": "project",
+=======
+    "name": "flightphp/skeleton",
+    "description": "A Flight PHP framework skeleton app",
+    "license": "MIT",
+
+>>>>>>> DEV
     "require": {
-        "php": ">=7.4",
-        "mikecao/flight": "^3.0"
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "flightphp/core": "^3.0",
+        "flightphp/runway": "^0.2 || ^1.1",
+        "tracy/tracy": "^2.9"
     },
+
+    "require-dev": {
+        "flightphp/tracy-extensions": "^0.1 || ^0.2"
+    },
+
     "autoload": {
-        "classmap": [
-            "app/models/",
-            "app/controllers/"
-        ]
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+
+    "scripts": {
+        "start": "php -S localhost:8000 -t public"
     }
 }
