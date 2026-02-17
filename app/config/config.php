@@ -52,7 +52,7 @@ $app->path(__DIR__ . $ds . '..' . $ds . '..');
 // define('BASE_URL', '/ETU004246/EXAM');
 // $app->set('flight.base_url', '/ETU004246/EXAM');
 
-define('BASE_URL', rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/'));  // Base URL for your app. Compatible Windows/Linux
+define('BASE_URL', rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'));          // Base URL for your app. Change if app is in a subdirectory (e.g., '/myapp/')
 $app->set('flight.case_sensitive', false);    // Set true for case sensitive routes. Default: false
 $app->set('flight.log_errors', true);         // Log errors to file. Recommended: true in production
 $app->set('flight.handle_errors', false);     // Let Tracy handle errors if false. Set true to use Flight's error handler
